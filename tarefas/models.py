@@ -3,15 +3,15 @@ from django.db import models
 # Create your models here.
 class Tarefa(models.Model):
     OPCOES_STATUS = (
-    ('concluido', 'Concluído')
-    ('pendente', 'Pendente'),
-    ('adiado', 'Adiado')
-)
+        ('concluido', 'Concluído'),
+        ('pendente', 'Pendente'),
+        ('adiado', 'Adiado'),
+    )
 
     OPCOES_CATEGORIA = (
         ('urgente', 'Urgente'),
         ('importante', 'Importante'),
-        ('precisa ser feito', 'Precisa ser feito')
+        ('precisa ser feito', 'Precisa ser feito'),
     )
 
     descricao = models.CharField(max_length=400)
