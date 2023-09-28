@@ -44,5 +44,5 @@ def editar_tarefa(request, tarefa_id):
             tarefa.save()
             return redirect('tarefas_pendentes_list')
     else:
-        form = EditarTarefaForm(initial=('tarefa':tarefa.descricao, 'categoria':tarefa.categoria))
+        form = EditarTarefaForm(initial={'tarefa':tarefa.descricao, 'categoria':tarefa.categoria})
     return render(request, 'tarefas/editar_tarefa.html', {'tarefa':tarefa, 'form':form})
