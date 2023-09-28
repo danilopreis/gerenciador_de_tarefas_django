@@ -46,3 +46,20 @@ def editar_tarefa(request, tarefa_id):
     else:
         form = EditarTarefaForm(initial={'tarefa':tarefa.descricao, 'categoria':tarefa.categoria})
     return render(request, 'tarefas/editar_tarefa.html', {'tarefa':tarefa, 'form':form})
+
+
+def tarefas_concluidas_list(request):
+    tarefas_concluidas = Tarefa.objects.filter(status='concluido')
+    return render(request, 'tarefas/tarefas_concluidas.html', {'tarefas_concluidas':tarefas_concluidas})
+
+
+def tarefas_adiadas_list(request):
+    tarefas_adiadas = Tarefa.objects.filter(status='adiado')
+    return render(request, 'tarefas/tarefas_adiadas.html', {'tarefas_adiadas':tarefas_adiadas})
+
+
+def mover_para_tarefas(request, tarefa_id):
+    tarefa = get_object_or_404(Tarefa, id=tarefa_id)
+    tarefa.status = 'pendente'
+    tarefa.save()
+    return redirect('tarefas_pendentes_list')
